@@ -42,17 +42,33 @@ def dqr(df):
     continuous_data['max'] = [round(df[ind].max(),2) for ind in continuous_data.index]
     continuous_data['std dev'] = [round(df[ind].std(),2) for ind in continuous_data.index]
 
-    # Update Categorical Data Table
+    mode_2 = []
+    mode_freq_2 = []
+    mode_perc_2 = []
+
+    for ind in categorical_data.index:
+        if categorical_data.loc[ind,'cardinality'] > 1:
+            mode_2.append(df[ind].value_counts().index[1])
+            mode_freq_2.append(df[ind].value_counts()[1])
+        else:
+            mode_2.append(np.nan)
+            mode_freq_2.append(np.nan)
+            mode_perc_2.append(np.nan)
+
+    mode = [df[ind].mode().values[0] for ind in categorical_data.index]
     mode_freq =[df[ind].value_counts()[0] for ind in categorical_data.index]
-    mode_freq_2 =[df[ind].value_counts()[1] for ind in categorical_data.index]
-    categorical_data['mode'] = [df[ind].mode().values[0] for ind in categorical_data.index]
-    categorical_data['mode freq'] = mode_freq
-    categorical_data['mode percent'] = [round((mode_freq[i]/len(df)*100),2) for i in range(len(categorical_data))]
-    categorical_data['mode 2'] = [df[ind].value_counts().index[1] for ind in categorical_data.index]
-    categorical_data['mode 2 freq'] = mode_freq_2
-    categorical_data['mode 2 percent'] = [round((mode_freq_2[i]/len(df)*100),2) for i in range(len(categorical_data))]
+    mode_perc = [round((mode_freq[i]/len(df)*100),2) for i in range(len(mode_freq))]
+    mode_perc_2 = [round((mode_freq_2[i]/len(df)*100),2) for i in range(len(mode_freq_2))]
+
+
+    categorical_data['mode'] = mode
+    categorical_data['mode_freq'] = mode_freq
+    categorical_data['mode_percent'] = mode_perc
+    categorical_data['mode_2'] = mode_2
+    categorical_data['mode_2_freq'] = mode_freq_2
+    categorical_data['mode_2_perc'] = mode_perc_2
 
     continuous_data.to_csv(r'continuous_data.csv')
     categorical_data.to_csv(r'categorical_data.csv')
 
-    return continuous_data, categorical_data
+    return
