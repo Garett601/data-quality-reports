@@ -33,4 +33,4 @@ This function can be run before, during and after data pre-processing to make su
 ### Who do I talk to? ###
 
 * Repo owner or admin:
-	* Garett Sidwell (garett600@gmail.com)
+	* Garett Sidwell
