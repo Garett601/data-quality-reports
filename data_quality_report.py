@@ -5,18 +5,33 @@ Author: Garett Sidwell
 Project: Data Quality Report
 File name: data_quality_report.py
 Date created: 09/02/2022
-Date modified: 09/02/2022
+Date modified: 17/05/2022
 Description: Quick data quality reports for both continuous and categorical data
 '''
 
 import pandas as pd
 import numpy as np
+import warnings
+
+warnings.filterwarnings('ignore')
 
 def dqr(df):
+    '''Generates a basic Data Quality Report for the dataframe provided.
+
+    Parameters
+    ----------
+    df: DataFrame
+      DataFrame containing the features and rows for the data that needs a Data Quality Report.
+
+    Returns
+    -------
+    continuous_data: DataFrame
+      DataFrame contaiing the statistical summary and other data quality indicators (cardinality, missing values) for the continuous data
+    
+    categorical_data: DataFrame
+      DataFrame contaiing the statistical summary and other data quality indicators (cardinality, missing values) for the categorical data
     '''
-    This function genrates a basic Data Quality Report for the dataframe provided.
-    The output is split into continuous and categorical features.
-    '''
+    
     # Get data types
     data_types = pd.DataFrame(df.dtypes, columns=['data_type'])
     # Get count
@@ -58,7 +73,10 @@ def dqr(df):
     categorical_data['mode_2_freq'] = mode_freq_2
     categorical_data['mode_2_perc'] = mode_perc_2
 
-    continuous_data.to_csv(r'continuous_data.csv')
-    categorical_data.to_csv(r'categorical_data.csv')
+    continuous_data.sort_values('missing', ascending=False, inplace=True)
+    categorical_data.sort_values('missing', ascending=False, inplace=True)
+
+    # continuous_data.to_csv(r'continuous_data.csv')
+    # categorical_data.to_csv(r'categorical_data.csv')
 
     return continuous_data, categorical_data
