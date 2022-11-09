@@ -5,7 +5,7 @@ Author: Garett Sidwell
 Project: Data Quality Report
 File name: data_quality_report.py
 Date created: 09/02/2022
-Date modified: 17/05/2022
+Date modified: 09/11/2022
 Description: Quick data quality reports for both continuous and categorical data
 '''
 
@@ -15,20 +15,22 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-def dqr(df):
+def dqr(df: pd.DataFrame, save_as_csv: bool = False) -> pd.DataFrame:
     '''Generates a basic Data Quality Report for the dataframe provided.
 
     Parameters
     ----------
-    df: DataFrame
+    df: pd.DataFrame
       DataFrame containing the features and rows for the data that needs a Data Quality Report.
+    save_as_csv: bool
+      Boolean flag to indicate if you would like to save and export csv files containing the Data Quality Reports.
 
     Returns
     -------
-    continuous_data: DataFrame
+    continuous_data: pd.DataFrame
       DataFrame contaiing the statistical summary and other data quality indicators (cardinality, missing values) for the continuous data
     
-    categorical_data: DataFrame
+    categorical_data: pd.DataFrame
       DataFrame contaiing the statistical summary and other data quality indicators (cardinality, missing values) for the categorical data
     '''
     
@@ -76,7 +78,8 @@ def dqr(df):
     continuous_data.sort_values('missing', ascending=False, inplace=True)
     categorical_data.sort_values('missing', ascending=False, inplace=True)
 
-    # continuous_data.to_csv(r'continuous_data.csv')
-    # categorical_data.to_csv(r'categorical_data.csv')
+    if save_as_csv == True:
+        continuous_data.to_csv(r'continuous_data.csv')
+        categorical_data.to_csv(r'categorical_data.csv')
 
     return continuous_data, categorical_data
