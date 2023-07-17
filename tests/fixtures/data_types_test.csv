@@ -1,0 +1,9 @@
+data_type,count,missing,cardinality
+ID,int64,40,0.0,40
+ReportDate,object,40,0.0,40
+Continuous1,float64,40,0.0,35
+Continuous2,float64,40,0.0,30
+Continuous3,float64,40,0.0,35
+Categorical1,object,40,0.0,3
+Categorical2,object,40,0.0,3
+Categorical3,object,40,0.0,3

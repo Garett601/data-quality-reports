@@ -38,6 +38,9 @@ class DQR:
         Writes the continuous and categorical data DataFrames to CSV files.
     """
 
+    CONTINUOUS_DEFAULT_PATH = "continuous_data.csv"
+    CATEGORICAL_DEFAULT_PATH = "categorical_data.csv"
+
     def __init__(self, df: pd.DataFrame) -> None:
         """Initialise DQR instance.
 
@@ -207,12 +210,24 @@ class DQR:
         """
         return self.categorical_data
 
-    def write_to_csv(self) -> None:
+    def write_to_csv(self, continuous_path: str = "", categorical_path: str = "") -> None:
         """Write continuous and categorical data DataFrames to CSV files.
+
+        Parameters
+        ----------
+        continuous_path : str, optional
+            The path where the continuous data CSV file should be saved.
+            Defaults to CONTINUOUS_DEFAULT_PATH if not provided.
+        categorical_path : str, optional
+            The path where the categorical data CSV file should be saved.
+            Defaults to CATEGORICAL_DEFAULT_PATH if not provided.
 
         Returns
         -------
         None
         """
-        self.continuous_data.to_csv(r"continuous_data.csv")
-        self.categorical_data.to_csv(r"categorical_data.csv")
+        continuous_path = continuous_path or self.CONTINUOUS_DEFAULT_PATH
+        categorical_path = categorical_path or self.CATEGORICAL_DEFAULT_PATH
+
+        self.continuous_data.to_csv(continuous_path)
+        self.categorical_data.to_csv(categorical_path)
