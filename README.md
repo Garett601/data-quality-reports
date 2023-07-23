@@ -1,30 +1,14 @@
 # README #
 
+## Data Quality Reports (DQR)
 
-### What is this repository for? ###
+This repository contains a Python class DQR for generating Data Quality Reports on pandas DataFrames. The class performs an analysis on the DataFrame and divides the data into continuous and categorical variables, creating reports with relevant statistical metrics for both types.
 
-* Quick summary:
-	* This python script automatically generates Data Quality Reports for your dataset.
-	* It can be used on raw data to identify erroneous data or features that do not add predictive value.
+### Version:
+* V0.1.0
 
-This function can be run before, during and after data pre-processing to make sure your final dataset is a good quality dataset for model training.
-* Version:
-	* V1.0.1
-
-### How do I get set up? ###
-
-* Summary of set up:
-	* Clone the repository
-	* Use the dqr.ipynb to perform run the Data Quality Report on your data
-		* Make sure to update the file_path variable to the file_path of your data
-			* file_path = '<YOUR FILE PATH>'
-		* Change the DataFrame creation code to match your file type
-	* You can export and save your Data Quality Reports to csv files by specifying the save_as_csv argument to True
-		* The default behavivour is save_as_csv = False
-		* This results in the Data Quality Report being printed to the screen in a Jupyter Notebook
-* Dependencies:
-	* pandas
-	* numpy
+### Dependencies:
+All dependencies are handled by the poetry package. Check the pyproject.toml for more information
 
 ### Contribution guidelines ###
 
@@ -35,8 +19,13 @@ This function can be run before, during and after data pre-processing to make su
 * Repo owner or admin:
 	* Garett Sidwell
 
-### Updates ###
+### Updates
 
 * 09/11/2022: Created V1.0.1
-	* Updated the dqr function in data_quality_report.py to allow the option to save csv files or not
-	* Added dqr.ipynb Jupyter Notebook to quickly perform Data Quality Check after specifying file_path
+	* Updated the dqr function in data_quality_report.py to allow the option to save csv files or not.
+	 * Added dqr.ipynb Jupyter Notebook to quickly perform Data Quality Check after specifying file_path.
+
+* 17/07/2023: Created V0.1.0
+	* Changed package structure to conform to PEP guidelines.
+	* Changed versioning scheme to represent new structure and to follow the MAJOR.MINOR.PATCH convention.
+	* Converted implementation to a Class to make the code easier to understand and to implement only the methods required by the user.

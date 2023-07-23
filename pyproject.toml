@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "data-quality-reports"
+version = "0.1.0"
+description = "Python package to quickly generate basic data quality reports for your dataset."
+authors = ["Garett Sidwell <garett600@gmail.com>"]
+license = "LICENSE.md"
+readme = "README.md"
+packages = [{include = "data_quality_reports"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.0.3"
+numpy = "^1.25.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+black = "^23.7.0"
+flake8 = "^6.0.0"
+pre-commit = "^3.3.3"
+mypy = "^1.4.1"
+isort = "^5.12.0"
+commitizen = "^3.5.3"
+pandas-stubs = "^2.0.2.230605"
+ipykernel = "^6.24.0"
+
+[tool.black]
+line-length = 119
+target-version = ['py39', 'py310']
+
+[tool.isort]
+profile = "black"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "poetry"
+update_changelog_on_bump = true
+major_version_zero = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

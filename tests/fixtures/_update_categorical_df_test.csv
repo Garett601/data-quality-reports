@@ -1,0 +1,5 @@
+data_type,count,missing,cardinality,mode,mode_freq,mode_percent,mode_2,mode_2_freq,mode_2_perc
+ReportDate,object,40,0.0,40,2023-01-01,1,2.5,2023-01-02,1,2.5
+Categorical1,object,40,0.0,3,Category1,14,35.0,Category2,13,32.5
+Categorical2,object,40,0.0,3,TypeB,16,40.0,TypeA,12,30.0
+Categorical3,object,40,0.0,3,Label1,14,35.0,Label2,14,35.0
